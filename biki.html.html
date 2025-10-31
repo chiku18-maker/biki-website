@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For BIKI💖</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1 {
+    color: #ff6fa3;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 160, 200, 0.4);
+  }
+
+  p {
+    color: #555;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  button {
+    margin-top: 25px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ff9ec9, #9ec9ff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 140, 180, 0.3);
+    transition: 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 140, 180, 0.4);
+  }
+
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: pink;
+    transform: rotate(45deg);
+    animation: float 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  .heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: pink;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: 10px;
+    top: 0;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(45deg);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(-700px) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 10px;
+    color: #777;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+  <h1>BIKI NAH DHIKI 💖</h1>
+  <p>TU JAUNU GHARU ✨</p>
+  <button id="playBtn">🎵 Play Song</button>
+  <footer>From Chiku 💫</footer>
+
+  <audio id="song" src="https://www.dropbox.com/scl/fi/ojl7h2zln3r4dwxgsg7xi/People.mp3?rlkey=8d6n9fnmpmrlz2t54i2xocx8r&raw=1"></audio>
+
+  <script>
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 400);
+
+    // Music control
+    const song = document.getElementById("song");
+    const playBtn = document.getElementById("playBtn");
+
+    playBtn.addEventListener("click", () => {
+      song.play();
+      playBtn.textContent = "⏸ Pause Song";
+      playBtn.onclick = () => {
+        song.pause();
+        playBtn.textContent = "🎵 Play Song";
+        playBtn.onclick = () => {
+          song.play();
+          playBtn.textContent = "⏸ Pause Song";
+        };
+      };
+    });
+  </script>
+</body>
+</html>
